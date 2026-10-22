@@ -1,0 +1,22 @@
+2. Start the backend (Terminal 1)
+cd "C:\Users\Taha Hussain\Desktop\social networking app\server"
+npm install # first time only
+npm run dev          # nodemon, listens on http://localhost:5000
+Check: http://localhost:5000/api/health → {"status":"ok"}
+3. Start the frontend (Terminal 2)
+cd "C:\Users\Taha Hussain\Desktop\social networking app\client"
+npm install          # first time only
+npm run dev          # vite, opens http://localhost:5173
+4. Open
+Go to http://localhost:5173 and log in:
+User	Email	Password
+admin	admin@demo.com (mailto:admin@demo.com)	admin123
+alice	alice@demo.com (mailto:alice@demo.com)	password123
+bob	bob@demo.com (mailto:bob@demo.com)	password123
+carol	carol@demo.com (mailto:carol@demo.com)	password123
+dave	dave@demo.com (mailto:dave@demo.com)	password123
+Notes
+- Vite proxies /api and /socket.io → localhost:5000 (client/vite.config.js:8), so the frontend needs no API URL config.
+- MySQL service must be running in Windows Services before step 2, or you'll get ER_ACCESS_DENIED_ERROR / ECONNREFUSED.
+- If the server says EADDRINUSE :::5000, an old instance is still alive: Stop-Process -Id <pid> -Force (find it via Get-NetTCPConnection -LocalPort 5000 -State Listen).
+- Current status: backend up on 5000, frontend up on 5173, http://localhost:5173/api/health returns {"status":"ok"}.
